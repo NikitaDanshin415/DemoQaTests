@@ -2,6 +2,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import java.io.File;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -59,7 +60,7 @@ public class ToolsQaTest {
         //set Phone
         $x("//input[@id='userNumber']")
                 .shouldBe(Condition.visible.because("Поле Mobile должно отображаться на форме"))
-                .setValue("1234567890");
+                .setValue(this.mobile);
 
         //set Date
         $x("//input[@id='dateOfBirthInput']")
@@ -71,33 +72,33 @@ public class ToolsQaTest {
 
         $x("//select[@class='react-datepicker__month-select']")
                 .shouldBe(Condition.visible.because("Поле выбора месяца должно отображаться в календаре"))
-                .selectOption("December");
+                .selectOption(this.birthDateMouth);
 
         $x("//select[@class='react-datepicker__year-select']")
                 .shouldBe(Condition.visible.because("Поле выбора года должно отображаться в календаре"))
-                .selectOption("1996");
+                .selectOption(this.birthDateYear);
 
-        $x("//div[@class='react-datepicker__day react-datepicker__day--017']")
+        $x("//div[@class='react-datepicker__day react-datepicker__day--0" + this.birthDateDay + "']")
                 .shouldBe(Condition.visible.because("День должен отображаться в календаре"))
                 .click();
 
         //set subjects
         $x("//input[@id='subjectsInput']")
                 .shouldBe(Condition.visible.because("Поле Subjects должно отображаться на форме"))
-                .setValue("computer science")
+                .setValue(this.subjects)
                 .pressEnter();
 
         //set hobbies
-        $x("//label[text()='Sports']")
-                .shouldBe(Condition.visible.because("Чек бокс Sports должен отображаться на форме"))
+        $x("//label[text()='" + this.hobbies[0] + "']")
+                .shouldBe(Condition.visible.because("Чек бокс " + this.hobbies[0] + " должен отображаться на форме"))
                 .click();
 
-        $x("//label[text()='Reading']")
-                .shouldBe(Condition.visible.because("Чек бокс Reading должен отображаться на форме"))
+        $x("//label[text()='" + this.hobbies[1] + "']")
+                .shouldBe(Condition.visible.because("Чек бокс " + this.hobbies[1] + " должен отображаться на форме"))
                 .click();
 
-        $x("//label[text()='Music']")
-                .shouldBe(Condition.visible.because("Чек бокс Music должен отображаться на форме"))
+        $x("//label[text()='" + this.hobbies[2] + "']")
+                .shouldBe(Condition.visible.because("Чек бокс " + this.hobbies[2] + " должен отображаться на форме"))
                 .click();
 
         // set Picture
