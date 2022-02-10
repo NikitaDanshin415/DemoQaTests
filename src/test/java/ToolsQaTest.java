@@ -2,9 +2,9 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import java.io.File;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class ToolsQaTest {
@@ -37,103 +37,84 @@ public class ToolsQaTest {
         open("/automation-practice-form");
 
         //set FirstName
-        $x("//input[@id='firstName']")
-                .shouldBe(Condition.visible.because("Поле FirstName должно отображаться на форме"))
+        $("#firstName")
                 .setValue(this.firstName);
 
         //set LastName
-        $x("//input[@id='lastName']")
-                .shouldBe(Condition.visible.because("Поле LastName должно отображаться на форме"))
+        $("#lastName")
                 .setValue(this.lastName);
 
 
         //set Email
-        $x("//input[@id='userEmail']")
-                .shouldBe(Condition.visible.because("Поле Email должно отображаться на форме"))
+        $("#userEmail")
                 .setValue(this.email);
 
         //set Gender
-        $x("//input[@value='" + this.gender + "']/../label")
-                .shouldBe(Condition.visible.because("Поле Gender[" + this.gender + "] должно отображаться на форме"))
+        $(byText(this.gender))
                 .click();
 
         //set Phone
-        $x("//input[@id='userNumber']")
-                .shouldBe(Condition.visible.because("Поле Mobile должно отображаться на форме"))
+        $("#userNumber")
                 .setValue(this.mobile);
 
         //set Date
-        $x("//input[@id='dateOfBirthInput']")
-                .shouldBe(Condition.visible.because("Поле DateOfBirth должно отображаться на форме"))
+        $("#dateOfBirthInput")
                 .click();
 
-        $x("//div[@class='react-datepicker-popper']")
+        $(".react-datepicker-popper")
                 .should(Condition.appear.because("Календарь должен появиться на странице"));
 
-        $x("//select[@class='react-datepicker__month-select']")
-                .shouldBe(Condition.visible.because("Поле выбора месяца должно отображаться в календаре"))
+        $(".react-datepicker__month-select")
                 .selectOption(this.birthDateMouth);
 
-        $x("//select[@class='react-datepicker__year-select']")
-                .shouldBe(Condition.visible.because("Поле выбора года должно отображаться в календаре"))
+        $(".react-datepicker__year-select")
                 .selectOption(this.birthDateYear);
 
-        $x("//div[@class='react-datepicker__day react-datepicker__day--0" + this.birthDateDay + "']")
-                .shouldBe(Condition.visible.because("День должен отображаться в календаре"))
+        $(".react-datepicker__day--0" + this.birthDateDay + "")
                 .click();
 
         //set subjects
-        $x("//input[@id='subjectsInput']")
-                .shouldBe(Condition.visible.because("Поле Subjects должно отображаться на форме"))
+        $("#subjectsInput")
                 .setValue(this.subjects)
                 .pressEnter();
 
         //set hobbies
-        $x("//label[text()='" + this.hobbies[0] + "']")
-                .shouldBe(Condition.visible.because("Чек бокс " + this.hobbies[0] + " должен отображаться на форме"))
+        $(byText(this.hobbies[0]))
                 .click();
 
-        $x("//label[text()='" + this.hobbies[1] + "']")
-                .shouldBe(Condition.visible.because("Чек бокс " + this.hobbies[1] + " должен отображаться на форме"))
+        $(byText(this.hobbies[1]))
                 .click();
 
-        $x("//label[text()='" + this.hobbies[2] + "']")
-                .shouldBe(Condition.visible.because("Чек бокс " + this.hobbies[2] + " должен отображаться на форме"))
+        $(byText(this.hobbies[2]))
                 .click();
 
         // set Picture
-        $x("//input[@id='uploadPicture']")
-                .shouldBe(Condition.visible.because("Поле Picture должно отображаться на форме"))
+        $("#uploadPicture")
                 .uploadFile(picture);
 
         //set Current Address
-        $x("//textarea[@id='currentAddress']")
-                .shouldBe(Condition.visible.because("Поле Current Address должно отображаться на форме"))
+        $("#currentAddress")
                 .setValue(this.address);
 
         //set State
-        $x("//div[@id='state']")
-                .shouldBe(Condition.visible.because("Поле State должно отображаться на форме"))
+        $("#state")
                 .click();
 
-        $x("//*[text()='" + this.state + "']")
-                .shouldBe(Condition.visible.because("У поля State должен появится список элементов"))
+        $(byText(this.state))
                 .click();
 
         //set City
-        $x("//div[@id='city']")
-                .shouldBe(Condition.visible.because("Поле City должно отображаться на форме"))
+        $("#city")
                 .click();
 
-        $x("//*[text()='" + this.city + "']")
-                .shouldBe(Condition.visible.because("У поля City должен появится список элементов"))
+        $(byText(this.city))
                 .click();
 
-        $x("//button[@id='submit']")
-                .shouldBe(Condition.visible.because("Кнопка Submit должна отображаться на форме"))
+        //submit form
+        $("#submit")
                 .click();
 
-
+        //check result table
         checkTableRow("Student Name", this.firstName + " " + this.lastName);
         checkTableRow("Student Email", this.email);
         checkTableRow("Gender", this.gender);
@@ -154,7 +135,7 @@ public class ToolsQaTest {
      * @param value - предполагаемое значение.
      */
     public void checkTableRow(String label, String value) {
-        $x("//div[@class='modal-content']//td[text()='" + label + "']/../td[2]")
-                .shouldHave(Condition.text(value).because("Поле " + label + " должно иметь значение " + value));
+        $(".table")
+                .shouldHave(Condition.text(label), Condition.text(value));
     }
 }
