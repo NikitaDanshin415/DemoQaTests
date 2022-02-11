@@ -1,10 +1,9 @@
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pageObject.DemoQaRegisterForm;
 import java.io.File;
 
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class ToolsQaTest {
@@ -25,6 +24,7 @@ public class ToolsQaTest {
     final String state = "NCR";
     final String city = "Delhi";
 
+    final private DemoQaRegisterForm demoQaRegisterForm = new DemoQaRegisterForm();
 
     @BeforeAll
     static void beforeAll() {
@@ -36,106 +36,37 @@ public class ToolsQaTest {
     void EntryPoint() {
         open("/automation-practice-form");
 
-        //set FirstName
-        $("#firstName")
-                .setValue(this.firstName);
+        //step_1
+        //fill form data
+        demoQaRegisterForm
+                .setFirstNameInput(firstName)
+                .setLastName(lastName)
+                .setUserEmail(email)
+                .setGender(gender)
+                .setMobile(mobile)
+                .setBirthDate(birthDateYear, birthDateMouth, birthDateDay)
+                .setSubjects(subjects)
+                .setHobbies(hobbies)
+                .setPicture(picture)
+                .setAddress(address)
+                .setState(state)
+                .setCity(city)
+                .submitForm();
 
-        //set LastName
-        $("#lastName")
-                .setValue(this.lastName);
-
-
-        //set Email
-        $("#userEmail")
-                .setValue(this.email);
-
-        //set Gender
-        $(byText(this.gender))
-                .click();
-
-        //set Phone
-        $("#userNumber")
-                .setValue(this.mobile);
-
-        //set Date
-        $("#dateOfBirthInput")
-                .click();
-
-        $(".react-datepicker-popper")
-                .should(Condition.appear.because("Календарь должен появиться на странице"));
-
-        $(".react-datepicker__month-select")
-                .selectOption(this.birthDateMouth);
-
-        $(".react-datepicker__year-select")
-                .selectOption(this.birthDateYear);
-
-        $(".react-datepicker__day--0" + this.birthDateDay + "")
-                .click();
-
-        //set subjects
-        $("#subjectsInput")
-                .setValue(this.subjects)
-                .pressEnter();
-
-        //set hobbies
-        $(byText(this.hobbies[0]))
-                .click();
-
-        $(byText(this.hobbies[1]))
-                .click();
-
-        $(byText(this.hobbies[2]))
-                .click();
-
-        // set Picture
-        $("#uploadPicture")
-                .uploadFile(picture);
-
-        //set Current Address
-        $("#currentAddress")
-                .setValue(this.address);
-
-        //set State
-        $("#state")
-                .click();
-
-        $(byText(this.state))
-                .click();
-
-        //set City
-        $("#city")
-                .click();
-
-        $(byText(this.city))
-                .click();
-
-        //submit form
-        $("#submit")
-                .click();
-
-        //check result table
-        checkTableRow("Student Name", this.firstName + " " + this.lastName);
-        checkTableRow("Student Email", this.email);
-        checkTableRow("Gender", this.gender);
-        checkTableRow("Mobile", this.mobile);
-        checkTableRow("Date of Birth", birthDate);
-        checkTableRow("Mobile", this.mobile);
-        checkTableRow("Subjects", this.subjects);
-        checkTableRow("Hobbies", String.join(", ", this.hobbies));
-        checkTableRow("Picture", this.picture.getName());
-        checkTableRow("Address", this.address);
-        checkTableRow("State and City", this.state + " " + this.city);
+        //step_2
+        //Check results
+        demoQaRegisterForm
+                .checkResultInModal("Student Name", firstName + " " + lastName)
+                .checkResultInModal("Student Email", email)
+                .checkResultInModal("Gender", gender)
+                .checkResultInModal("Mobile", mobile)
+                .checkResultInModal("Date of Birth", birthDate)
+                .checkResultInModal("Mobile", mobile)
+                .checkResultInModal("Subjects", subjects)
+                .checkResultInModal("Hobbies", String.join(", ", hobbies))
+                .checkResultInModal("Picture", picture.getName())
+                .checkResultInModal("Address", address)
+                .checkResultInModal("State and City", state + " " + city);
     }
 
-    /**
-     * метод для проверки значения поля в таблице.
-     *
-     * @param label - название поля.
-     * @param value - предполагаемое значение.
-     */
-    public void checkTableRow(String label, String value) {
-        $(".table")
-                .shouldHave(Condition.text(label), Condition.text(value));
-    }
 }
