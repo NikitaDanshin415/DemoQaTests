@@ -65,7 +65,7 @@ public class DemoQaRegisterForm {
         return this;
     }
 
-    public DemoQaRegisterForm setBirthDate(String year, String mouth, String day) {
+    public DemoQaRegisterForm setBirthDate(int year, String mouth, int day) {
         birthDateInput
                 .click();
 
@@ -142,7 +142,8 @@ public class DemoQaRegisterForm {
     }
 
     public DemoQaRegisterForm checkResultInModal(String label, String value) {
-        resultModal.checkTableRow(label, value);
+        resultModal
+                .checkTableRow(label, value);
 
         return this;
     }

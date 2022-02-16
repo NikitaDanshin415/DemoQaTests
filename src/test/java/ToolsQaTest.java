@@ -1,36 +1,13 @@
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pageObject.DemoQaRegisterForm;
-import java.io.File;
+import utils.BaseTest;
+
 
 import static com.codeborne.selenide.Selenide.*;
+import static utils.TestData.*;
 
-public class ToolsQaTest {
-    //константы для теста
-    final String firstName = "Nikita";
-    final String lastName = "Danshin";
-    final String email = "danshinnp@yandex.ru";
-    final String gender = "Male";
-    final String mobile = "1234567890";
-    final String birthDateDay = "17";
-    final String birthDateMouth = "December";
-    final String birthDateYear = "1996";
-    final String birthDate = this.birthDateDay + " " + this.birthDateMouth + "," + this.birthDateYear;
-    final String subjects = "Computer Science";
-    final String[] hobbies = {"Sports", "Reading", "Music"};
-    final File picture = new File("src/test/resources/selenide.jpeg");
-    final String address = "My address";
-    final String state = "NCR";
-    final String city = "Delhi";
-
+public class ToolsQaTest extends BaseTest {
     final private DemoQaRegisterForm demoQaRegisterForm = new DemoQaRegisterForm();
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-    }
 
     @Test
     void EntryPoint() {

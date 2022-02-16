@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class CalendarComponent {
 
-    public void setDate(String year, String mouth, String day){
+    public void setDate(int year, String mouth, int day){
         $(".react-datepicker-popper")
                 .should(Condition.appear.because("Календарь должен появиться на странице"));
 
@@ -14,7 +14,7 @@ public class CalendarComponent {
                 .selectOption(mouth);
 
         $(".react-datepicker__year-select")
-                .selectOption(year);
+                .selectOption(String.valueOf(year));
 
         $(".react-datepicker__day--0" + day + "")
                 .click();
