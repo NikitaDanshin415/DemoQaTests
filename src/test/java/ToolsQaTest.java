@@ -2,15 +2,17 @@ import org.junit.jupiter.api.Test;
 import pageObject.DemoQaRegisterForm;
 import utils.BaseTest;
 
-
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 import static utils.TestData.*;
 
+/**
+ * Тесты для https://demoqa.com/.
+ */
 public class ToolsQaTest extends BaseTest {
-    final private DemoQaRegisterForm demoQaRegisterForm = new DemoQaRegisterForm();
 
     @Test
-    void EntryPoint() {
+    void FirstTest() {
+        final DemoQaRegisterForm demoQaRegisterForm = new DemoQaRegisterForm();
         open("/automation-practice-form");
 
         //step_1
@@ -45,5 +47,6 @@ public class ToolsQaTest extends BaseTest {
                 .checkResultInModal("Address", address)
                 .checkResultInModal("State and City", state + " " + city);
     }
+
 
 }
