@@ -41,7 +41,7 @@ public class ToolsQaTest extends BaseTest {
                     .setBirthDate(birthDateYear, birthDateMouth, birthDateDay)
                     .setSubjects(subjects)
                     .setHobbies(hobbies)
-//                    .setPicture(new File("src/test/resources/selenide.jpeg"))
+                    .setPicture(picture)
                     .setAddress(address)
                     .setState(state)
                     .setCity(city)
@@ -58,7 +58,7 @@ public class ToolsQaTest extends BaseTest {
                     .checkResultInModal("Mobile", mobile)
                     .checkResultInModal("Subjects", subjects)
                     .checkResultInModal("Hobbies", String.join(", ", hobbies))
-//                    .checkResultInModal("Picture", picture.getName())
+                    .checkResultInModal("Picture", picture.getName())
                     .checkResultInModal("Address", address)
                     .checkResultInModal("State and City", state + " " + city);
         });
