@@ -11,6 +11,7 @@ import pageObject.DemoQaRegisterForm;
 import utils.BaseTest;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
@@ -40,7 +41,7 @@ public class ToolsQaTest extends BaseTest {
                     .setBirthDate(birthDateYear, birthDateMouth, birthDateDay)
                     .setSubjects(subjects)
                     .setHobbies(hobbies)
-                    .setPicture(picture)
+//                    .setPicture(new File("src/test/resources/selenide.jpeg"))
                     .setAddress(address)
                     .setState(state)
                     .setCity(city)
@@ -57,7 +58,7 @@ public class ToolsQaTest extends BaseTest {
                     .checkResultInModal("Mobile", mobile)
                     .checkResultInModal("Subjects", subjects)
                     .checkResultInModal("Hobbies", String.join(", ", hobbies))
-                    .checkResultInModal("Picture", picture.getName())
+//                    .checkResultInModal("Picture", picture.getName())
                     .checkResultInModal("Address", address)
                     .checkResultInModal("State and City", state + " " + city);
         });
