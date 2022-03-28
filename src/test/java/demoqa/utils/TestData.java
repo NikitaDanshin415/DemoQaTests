@@ -1,4 +1,4 @@
-package utils;
+package demoqa.utils;
 
 import com.github.javafaker.Faker;
 
@@ -24,3 +24,4 @@ public class TestData {
   public static final String state = "NCR";
   public static final String city = "Delhi";
 }
+

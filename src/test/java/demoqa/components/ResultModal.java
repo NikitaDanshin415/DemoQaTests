@@ -1,4 +1,4 @@
-package components;
+package demoqa.components;
 
 import com.codeborne.selenide.Condition;
 

@@ -1,8 +1,10 @@
-package pageObject;
+package demoqa.pageObject;
 
 import com.codeborne.selenide.SelenideElement;
-import components.CalendarComponent;
-import components.ResultModal;
+import demoqa.components.CalendarComponent;
+import demoqa.components.ResultModal;
+import io.qameta.allure.Step;
+
 import java.io.File;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -28,6 +30,7 @@ public class DemoQaRegisterForm {
   private final SelenideElement submitButton = $("#submit");
 
 
+  @Step("Ввести имя пользователя")
   public DemoQaRegisterForm setFirstNameInput(String firstNameInput) {
     this.firstNameInput
         .setValue(firstNameInput);

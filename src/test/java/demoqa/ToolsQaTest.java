@@ -1,21 +1,17 @@
-import com.codeborne.selenide.WebDriverRunner;
-import io.qameta.allure.Allure;
+package demoqa;
+
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import pageObject.DemoQaRegisterForm;
-import utils.BaseTest;
-
-import java.io.ByteArrayInputStream;
-import java.io.File;
+import demoqa.pageObject.DemoQaRegisterForm;
+import demoqa.utils.BaseTest;
 
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
-import static utils.TestData.*;
+import static demoqa.utils.TestData.*;
 
 public class ToolsQaTest extends BaseTest {
 
@@ -41,7 +37,7 @@ public class ToolsQaTest extends BaseTest {
                     .setBirthDate(birthDateYear, birthDateMouth, birthDateDay)
                     .setSubjects(subjects)
                     .setHobbies(hobbies)
-                    .setPicture(picture)
+//                    .setPicture(picture)
                     .setAddress(address)
                     .setState(state)
                     .setCity(city)
@@ -58,7 +54,7 @@ public class ToolsQaTest extends BaseTest {
                     .checkResultInModal("Mobile", mobile)
                     .checkResultInModal("Subjects", subjects)
                     .checkResultInModal("Hobbies", String.join(", ", hobbies))
-                    .checkResultInModal("Picture", picture.getName())
+//                    .checkResultInModal("Picture", picture.getName())
                     .checkResultInModal("Address", address)
                     .checkResultInModal("State and City", state + " " + city);
         });
