@@ -39,19 +39,17 @@ public class ToolsQaTest extends BaseTest {
                 .setCity(city)
                 .submitForm());
 
-        step("Проверка значений формы", () -> {
-            demoQaRegisterForm
-                    .checkResultInModal("Student Name", firstName + " " + lastName)
-                    .checkResultInModal("Student Email", email)
-                    .checkResultInModal("Gender", gender)
-                    .checkResultInModal("Mobile", mobile)
-                    .checkResultInModal("Date of Birth", birthDate)
-                    .checkResultInModal("Mobile", mobile)
-                    .checkResultInModal("Subjects", subjects)
-                    .checkResultInModal("Hobbies", String.join(", ", hobbies))
+        step("Проверка значений формы", () -> demoQaRegisterForm
+                .checkResultInModal("Student Name", firstName + " " + lastName)
+                .checkResultInModal("Student Email", email)
+                .checkResultInModal("Gender", gender)
+                .checkResultInModal("Mobile", mobile)
+                .checkResultInModal("Date of Birth", birthDate)
+                .checkResultInModal("Mobile", mobile)
+                .checkResultInModal("Subjects", subjects)
+                .checkResultInModal("Hobbies", String.join(", ", hobbies))
 //                    .checkResultInModal("Picture", picture.getName())
-                    .checkResultInModal("Address", address)
-                    .checkResultInModal("State and City", state + " " + city);
-        });
+                .checkResultInModal("Address", address)
+                .checkResultInModal("State and City", state + " " + city));
     }
 }
