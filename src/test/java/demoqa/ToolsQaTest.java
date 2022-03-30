@@ -3,7 +3,6 @@ package demoqa;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import demoqa.pageObject.DemoQaRegisterForm;
@@ -23,26 +22,22 @@ public class ToolsQaTest extends BaseTest {
     void FirstTest() {
         final DemoQaRegisterForm demoQaRegisterForm = new DemoQaRegisterForm();
 
-        step("Открытие формы", () -> {
-            open("/automation-practice-form");
-        });
+        step("Открытие формы", () -> open("/automation-practice-form"));
 
-        step("Заполнение формы", () -> {
-            demoQaRegisterForm
-                    .setFirstNameInput(firstName)
-                    .setLastName(lastName)
-                    .setUserEmail(email)
-                    .setGender(gender)
-                    .setMobile(mobile)
-                    .setBirthDate(birthDateYear, birthDateMouth, birthDateDay)
-                    .setSubjects(subjects)
-                    .setHobbies(hobbies)
+        step("Заполнение формы", () -> demoQaRegisterForm
+                .setFirstNameInput(firstName)
+                .setLastName(lastName)
+                .setUserEmail(email)
+                .setGender(gender)
+                .setMobile(mobile)
+                .setBirthDate(birthDateYear, birthDateMouth, birthDateDay)
+                .setSubjects(subjects)
+                .setHobbies(hobbies)
 //                    .setPicture(picture)
-                    .setAddress(address)
-                    .setState(state)
-                    .setCity(city)
-                    .submitForm();
-        });
+                .setAddress(address)
+                .setState(state)
+                .setCity(city)
+                .submitForm());
 
         step("Проверка значений формы", () -> {
             demoQaRegisterForm
