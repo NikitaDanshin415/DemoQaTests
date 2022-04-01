@@ -3,3 +3,4 @@
 /build/
 /build/classes/java/test/
 /.idea
+/src/test/resources/property/user.properties
